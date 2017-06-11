@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE9C70311EED35B100678DC1 /* MyCustomFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9C70301EED35B100678DC1 /* MyCustomFilter.m */; };
 		BC01CA8614E7620600967264 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC01CA8514E7620600967264 /* UIKit.framework */; };
 		BC01CA8814E7620600967264 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC01CA8714E7620600967264 /* Foundation.framework */; };
 		BC01CA8A14E7620600967264 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC01CA8914E7620600967264 /* CoreGraphics.framework */; };
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE9C702F1EED35B100678DC1 /* MyCustomFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomFilter.h; sourceTree = "<group>"; };
+		AE9C70301EED35B100678DC1 /* MyCustomFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomFilter.m; sourceTree = "<group>"; };
 		BC01CA8114E7620600967264 /* MultiViewFilterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiViewFilterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC01CA8514E7620600967264 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC01CA8714E7620600967264 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +147,8 @@
 				BC01CA9514E7620600967264 /* MultiViewAppDelegate.m */,
 				BC01CAB314E763FC00967264 /* MultiViewViewController.h */,
 				BC01CAB414E763FC00967264 /* MultiViewViewController.m */,
+				AE9C702F1EED35B100678DC1 /* MyCustomFilter.h */,
+				AE9C70301EED35B100678DC1 /* MyCustomFilter.m */,
 				BC3145C614E76BA700824EA0 /* Shader1.fsh */,
 				BC3145C714E76BA700824EA0 /* Shader2.fsh */,
 				BC01CA8C14E7620600967264 /* Supporting Files */,
@@ -205,6 +210,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Cell Phone";
+				TargetAttributes = {
+					BC01CA8014E7620600967264 = {
+						DevelopmentTeam = F5WGKG37WD;
+					};
+				};
 			};
 			buildConfigurationList = BC01CA7B14E7620600967264 /* Build configuration list for PBXProject "MultiViewFilterExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -272,6 +282,7 @@
 			files = (
 				BC01CA9214E7620600967264 /* main.m in Sources */,
 				BC01CA9614E7620600967264 /* MultiViewAppDelegate.m in Sources */,
+				AE9C70311EED35B100678DC1 /* MyCustomFilter.m in Sources */,
 				BC01CAB514E763FC00967264 /* MultiViewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,10 +386,11 @@
 		BC01CA9A14E7620600967264 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = F5WGKG37WD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MultiViewFilterExample/MultiViewFilterExample-Prefix.pch";
 				INFOPLIST_FILE = "MultiViewFilterExample/MultiViewFilterExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -387,10 +399,11 @@
 		BC01CA9B14E7620600967264 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = F5WGKG37WD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MultiViewFilterExample/MultiViewFilterExample-Prefix.pch";
 				INFOPLIST_FILE = "MultiViewFilterExample/MultiViewFilterExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

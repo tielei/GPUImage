@@ -1,4 +1,5 @@
 #import "MultiViewViewController.h"
+#import "MyCustomFilter.h"
 
 @implementation MultiViewViewController
 
@@ -24,8 +25,13 @@
     primaryView.backgroundColor = [UIColor blueColor];
 	self.view = primaryView;
 
-    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
+    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1280x720 cameraPosition:AVCaptureDevicePositionBack];
     videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    
+    videoCamera.frameProcessingCompletionBlock = ^(GPUImageOutput *output, CMTime time) {
+        //
+        NSLog(@"xxx frame time: %lld, %lld, %d", time.value, time.epoch, time.timescale);
+    };
     
     CGFloat halfWidth = round(mainScreenFrame.size.width / 2.0);
     CGFloat halfHeight = round(mainScreenFrame.size.height / 2.0);    
@@ -41,6 +47,18 @@
     GPUImageFilter *filter1 = [[[GPUImageFilter alloc] initWithFragmentShaderFromFile:@"Shader1"] autorelease];
     GPUImageFilter *filter2 = [[[GPUImageFilter alloc] initWithFragmentShaderFromFile:@"Shader2"] autorelease];
     GPUImageSepiaFilter *filter3 = [[[GPUImageSepiaFilter alloc] init] autorelease];
+    MyCustomFilter *filter4 = [[[MyCustomFilter alloc] init] autorelease];
+    
+
+    filter3.frameProcessingCompletionBlock = ^(GPUImageOutput *output, CMTime time) {
+        //
+        NSLog(@"vvvv frame time: %lld, %lld, %d", time.value, time.epoch, time.timescale);
+    };
+    
+    view1.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    view2.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    view3.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    view4.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
 
 //    GPUImageBrightnessFilter *filter1 = [[GPUImageBrightnessFilter alloc] init];
 //    GPUImageBrightnessFilter *filter2 = [[GPUImageBrightnessFilter alloc] init];
@@ -70,17 +88,26 @@
     // For thumbnails smaller than the input video size, we currently need to make them render at a smaller size.
     // This is to avoid wasting processing time on larger frames than will be displayed.
     // You'll need to use -forceProcessingAtSize: with a zero size to re-enable full frame processing of video.
-    [filter1 forceProcessingAtSize:view2.sizeInPixels];
-    [filter2 forceProcessingAtSize:view3.sizeInPixels];
-    [filter3 forceProcessingAtSize:view4.sizeInPixels];
+//    [filter1 forceProcessingAtSize:view2.sizeInPixels];
+//    [filter2 forceProcessingAtSize:view3.sizeInPixels];
+//    [filter3 forceProcessingAtSize:view4.sizeInPixels];
 
-    [videoCamera addTarget:view1];
-    [videoCamera addTarget:filter1];
-    [filter1 addTarget:view2];
-    [videoCamera addTarget:filter2];
-    [filter2 addTarget:view3];
-    [videoCamera addTarget:filter3];
-    [filter3 addTarget:view4];
+//    [filter1 forceProcessingAtSize:CGSizeMake(360, 640)];
+//    [filter2 forceProcessingAtSize:CGSizeMake(360, 640)];
+//    [filter3 forceProcessingAtSize:CGSizeMake(360, 640)];
+
+    //[videoCamera addTarget:view1];
+    //[videoCamera addTarget:filter1];
+    //[filter1 addTarget:view2];
+    //[videoCamera addTarget:filter2];
+    
+    [videoCamera addTarget:filter4];
+    [filter4 addTarget:view2];
+
+
+    //[filter2 addTarget:view3];
+    //[videoCamera addTarget:filter3];
+    //[filter3 addTarget:view4];
 
     [videoCamera startCameraCapture];
 }
